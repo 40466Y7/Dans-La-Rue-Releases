@@ -3,6 +3,6 @@
 <style>body{font-family:system-ui,sans-serif;background:#11121a;color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;margin:0;text-align:center}a{color:#7aa2ff}.box{padding:2rem 3rem;background:#1c1e2b;border-radius:16px}</style></head>
 <body><div class="box"><h1>🎮 Téléchargement…</h1><p id="status">Récupération de la dernière version…</p><p><a id="manual" href="#">Cliquez ici si rien ne se passe</a></p></div>
 <script>
-const OWNER="40466Y7",REPO="Dans-La-Rue-Releases",ASSET="DansLaRue.exe";
-(async()=>{try{const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/releases/latest`);const d=await r.json();const a=d.assets.find(x=>x.name===ASSET);if(!a)throw 0;document.getElementById("status").textContent="Version "+d.tag_name+" — téléchargement.";document.getElementById("manual").href=a.browser_download_url;location.href=a.browser_download_url;}catch(e){document.getElementById("status").textContent="Erreur : aucune version trouvée.";}})();
+const OWNER="40466Y7",REPO="Dans-La-Rue-Releases";
+(async()=>{try{const r=await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/releases/latest`);const d=await r.json();const a=d.assets.find(x=>x.name.endsWith(".exe"));if(!a)throw 0;document.getElementById("status").textContent="Version "+d.tag_name+" — téléchargement.";document.getElementById("manual").href=a.browser_download_url;location.href=a.browser_download_url;}catch(e){document.getElementById("status").textContent="Erreur : aucune version trouvée.";}})();
 </script></body></html>
